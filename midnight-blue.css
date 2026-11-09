@@ -28,7 +28,6 @@
 /* 2. Основной фон */
 
 html,
-body,
 .backgroundContainer {
   background-color: var(--mb-bg) !important;
   color: #eaf1ff;
