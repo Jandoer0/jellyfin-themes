@@ -1,0 +1,196 @@
+/* Smoke Glass — a dark, translucent theme for Jellyfin Web */
+
+:root {
+  --sg-bg: #0b1018;
+  --sg-panel: #151e2b;
+  --sg-ink: #edf4fa;
+  --sg-muted: #b6c5d4;
+  --sg-accent: #a8bce8;
+  --sg-accent-soft: rgba(168, 188, 232, .12);
+  --sg-line: rgba(185, 218, 232, .17);
+  --sg-glass: rgba(18, 26, 38, .76);
+  --sg-glass-dense: rgba(16, 24, 36, .90);
+  --sg-shadow: 0 10px 30px rgba(0, 0, 0, .25);
+  --jf-palette-background-default: var(--sg-bg);
+  --jf-palette-background-paper: var(--sg-panel);
+  --jf-palette-AppBar-defaultBg: var(--sg-panel);
+  --jf-palette-AppBar-transparentBg: var(--sg-glass);
+  --jf-palette-AppBar-gradient: none;
+  --jf-palette-primary-main: var(--sg-accent);
+  --jf-palette-text-primary: var(--sg-ink);
+  --jf-palette-text-secondary: var(--sg-muted);
+  --jf-card-borderRadius: 12px;
+}
+
+/* Keep body transparent so Jellyfin's fixed backdrop can show through. */
+html {
+  background-color: var(--sg-bg);
+  color: var(--sg-ink);
+}
+
+.backgroundContainer:not(.withBackdrop):not(.backgroundContainer-transparent) {
+  background: radial-gradient(ellipse at 76% 0%, #192a36, var(--sg-bg) 65%) !important;
+}
+
+.backgroundContainer.withBackdrop {
+  background: linear-gradient(
+    180deg,
+    rgba(11, 16, 24, .24) 0%,
+    rgba(11, 16, 24, .32) 30%,
+    rgba(11, 16, 24, .88) 72%,
+    var(--sg-bg) 100%
+  ) !important;
+  opacity: 1;
+}
+
+/* The header keeps its tint when Jellyfin switches states on scroll. */
+.skinHeader,
+.skinHeader.skinHeader-withBackground,
+.skinHeader.skinHeader-blurred,
+.skinHeader.skinHeader-withBackground.skinHeader-blurred {
+  background: var(--sg-glass-dense) !important;
+  border-bottom: 1px solid var(--sg-line);
+  color: var(--sg-ink);
+}
+
+.skinHeader .headerTop,
+.skinHeader .headerTabs {
+  background: transparent !important;
+}
+
+.mainDrawer,
+.dialog,
+.actionSheet {
+  background: var(--sg-glass-dense) !important;
+  border: 1px solid var(--sg-line);
+  box-shadow: var(--sg-shadow);
+  color: var(--sg-ink);
+}
+
+.dialog,
+.actionSheet {
+  border-radius: 14px !important;
+}
+
+.formDialogHeader,
+.formDialogFooter {
+  background: transparent !important;
+}
+
+.navMenuOption {
+  border-radius: 8px;
+  margin: 2px 6px;
+}
+
+.navMenuOption:hover,
+.navMenuOption-selected {
+  background-color: var(--sg-accent-soft) !important;
+  color: var(--sg-accent) !important;
+}
+
+/* Frost the interface panels, leaving movie artwork and logos intact. */
+#itemDetailPage .detailRibbon,
+.itemDetailPage .detailRibbon,
+.detailRibbon {
+  background: linear-gradient(180deg, rgba(50, 70, 87, .28), transparent),
+    var(--sg-glass-dense) !important;
+  box-shadow: inset 0 1px var(--sg-line), inset 0 -1px var(--sg-line);
+  color: var(--sg-ink);
+}
+
+.noBackdropTransparency .detailPageWrapperContainer {
+  background: linear-gradient(180deg, rgba(13, 20, 30, .88), var(--sg-bg) 24rem) !important;
+}
+
+@supports ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .skinHeader,
+  .skinHeader.skinHeader-withBackground,
+  .skinHeader.skinHeader-blurred,
+  .skinHeader.skinHeader-withBackground.skinHeader-blurred {
+    background: var(--sg-glass) !important;
+  }
+
+  #itemDetailPage .detailRibbon,
+  .itemDetailPage .detailRibbon,
+  .detailRibbon {
+    background: linear-gradient(180deg, rgba(50, 70, 87, .28), transparent),
+      var(--sg-glass) !important;
+  }
+
+  .skinHeader,
+  .detailRibbon,
+  .mainDrawer,
+  .dialog,
+  .actionSheet {
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+  }
+}
+
+.cardBox,
+.cardScalable,
+.cardPadder,
+.cardImageContainer,
+.cardOverlayContainer,
+.itemDetailImage {
+  border-radius: 12px !important;
+}
+
+.detailImageContainer img,
+.itemDetailImage {
+  box-shadow: var(--sg-shadow);
+}
+
+.cardText-secondary,
+.secondaryText {
+  color: var(--sg-muted) !important;
+}
+
+.paperList,
+.visualCardBox {
+  background: var(--sg-glass) !important;
+  border-radius: 12px;
+}
+
+.emby-input,
+.emby-textarea,
+.emby-select {
+  background-color: rgba(10, 16, 24, .62) !important;
+  border: 1px solid var(--sg-line) !important;
+  border-radius: 8px !important;
+  color: var(--sg-ink) !important;
+}
+
+.emby-input:focus,
+.emby-textarea:focus,
+.emby-select:focus {
+  border-color: var(--sg-accent) !important;
+}
+
+.raised,
+.detailButton,
+.button-submit {
+  border-radius: 8px !important;
+}
+
+.button-submit,
+.raised.button-submit {
+  background-color: var(--sg-accent) !important;
+  color: #111b2c !important;
+}
+
+.emby-button:focus-visible,
+.card:focus-visible {
+  outline: 2px solid var(--sg-accent);
+  outline-offset: 3px;
+}
+
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .cardBox {
+    transition: transform .16s ease;
+  }
+
+  .cardBox:hover {
+    transform: translateY(-2px);
+  }
+}
